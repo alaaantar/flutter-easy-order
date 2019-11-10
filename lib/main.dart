@@ -32,13 +32,11 @@ import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() {
-//   debugPaintSizeEnabled = true;
-//   debugPaintBaselinesEnabled = true;
-//   debugPaintPointersEnabled = true;
-//   debugPrintMarkNeedsLayoutStacks = true;
-//   debugPrintMarkNeedsPaintStacks = true;
-
-
+  //   debugPaintSizeEnabled = true;
+  //   debugPaintBaselinesEnabled = true;
+  //   debugPaintPointersEnabled = true;
+  //   debugPrintMarkNeedsLayoutStacks = true;
+  //   debugPrintMarkNeedsPaintStacks = true;
 
   // Set `enableInDevMode` to true to see reports while in debug mode
   // This is only to be used for confirming that reports are being
