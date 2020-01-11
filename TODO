@@ -1,0 +1,64 @@
+// TODO orders counter / bloc unit tests : cart_bloc, storage_bloc
+// TODO FCM / cached_network_image / SafeArea / const / ??=
+// TODO stock / users info / pdf / image crop / image upload progress indicator
+// TODO transactions : limit 500 docs
+// TODO admob / firebase remote config (API key)
+// TODO responsive design / iOS
+// https://pub.dev/packages/flutter_platform_widgets
+// https://pub.dev/packages/states_rebuilder
+// https://pub.dev/packages/get_it
+// https://pub.dev/packages/auto_route
+// https://pub.dev/packages/hive
+// https://pub.dev/packages/moor
+// https://pub.dev/packages/infinite_view_pager
+// https://pub.dev/packages/mapbox_gl
+// https://pub.dev/packages/super_enum
+// https://pub.dev/packages/dartz (FP Either Task)
+// https://pub.dev/packages/authenticator
+// https://pub.dev/packages/autocomplete_textfield
+// https://pub.dev/packages/auto_size_text
+// https://pub.dev/packages/flutter_slidable (dismissable)
+// https://pub.dev/packages/flutter_spinkit
+// https://pub.dev/packages/bot_toast
+// https://pub.dev/packages/flutter_swiper
+// https://pub.dev/packages/flutter_staggered_animations
+// https://pub.dev/packages/sliding_panel
+// https://pub.dev/packages/snappable
+// https://pub.dev/packages/speed_dial
+// https://github.com/rrousselGit/provider/issues/85
+// https://bendyworks.com/blog/a-month-of-flutter-mocking-firebase-auth-in-tests
+// https://stackoverflow.com/questions/49466556/flutter-run-method-on-widget-build-complete
+// UserAccountsDrawerHeader / AnimatedSwitcher / showGeneralDialog
+// https://medium.com/flutterpub/flutter-firebase-performance-and-crashlytics-14b650b9d042
+// Spent limit : https://console.cloud.google.com/appengine/quotadetails?project=simple-order-manager
+// Splash screen icons :
+// https://www.filledstacks.com/snippet/setting-up-your-splash-screen-in-flutter/
+// https://medium.com/@101/splash-screen-in-android-769d3b0bafd0
+// https://romannurik.github.io/AndroidAssetStudio/index.html
+// https://apetools.webprofusion.com/#/tools/imagegorilla
+// https://medium.com/@akashmahali/facebook-login-google-sign-in-not-working-on-android-app-in-production-5febd9537f92
+// echo 44:4E:48:99:19:50:5C:1F:63:A6:0F:F6:A1:C2:31:E5:01:38:55:6D | xxd -r -p | openssl base64
+
+// java -jar bundletool-all-0.10.0.jar build-apks --bundle=app.aab --output=app.apks --ks=key.jks --ks-pass=pass:myPass --ks-key-alias=key --key-pass=pass:myPass
+// java -jar bundletool-all-0.10.0.jar install-apks --apks=app.apks
+// keytool -exportcert -list -v -alias key -keystore key.jks
+// keytool -exportcert -alias key -keystore key.jks | openssl sha1 -binary | openssl base64
+
+///////////////////////////////////////////////////////////////////
+//      Stream<StorageTaskEvent> events = uploadTask.events;
+//
+//      events.map((StorageTaskEvent event) {
+//        final StorageTaskSnapshot snapshot = event.snapshot;
+//        snapshot.error;
+//        snapshot.ref.getDownloadURL();
+//        snapshot.bytesTransferred / snapshot.totalByteCount * 100;
+//        path;
+//      });
+//
+//      events.listen((StorageTaskEvent event) async {
+//        final StorageTaskSnapshot snapshot = event.snapshot;
+//        final String url = await snapshot.ref.getDownloadURL();
+//        final double percentageTransferred = snapshot.bytesTransferred / snapshot.totalByteCount * 100;
+//      });
+////////////////////////////////////////////////////////////////
+
