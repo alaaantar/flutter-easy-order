@@ -433,6 +433,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
     final double deviceWidth = deviceSize.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
     return Scaffold(
+      // TODO remove resizeToAvoidBottomInset
       resizeToAvoidBottomInset: false,
 //      appBar: PreferredSize(
 //        preferredSize: Size.fromHeight(40.0), // default 56.0
