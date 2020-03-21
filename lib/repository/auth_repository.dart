@@ -6,11 +6,10 @@ import 'package:flutter_easy_order/widgets/helpers/logger.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract class AuthRepository {
-
   Stream<User> get user$;
 
   Future<User> currentUser();
@@ -31,7 +30,6 @@ abstract class AuthRepository {
 }
 
 class AuthRepositoryFirebaseImpl implements AuthRepository {
-
   final BehaviorSubject<User> _userSubject = BehaviorSubject<User>.seeded(null);
 
   @override
@@ -69,22 +67,27 @@ class AuthRepositoryFirebaseImpl implements AuthRepository {
 
   @override
   Future<User> signInWithGoogle() async {
-    final GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
-    final AuthResult authResult = await _firebaseAuth.signInWithCredential(credential);
-    logger.d('google user: $authResult'); // firebase, google.com, password
-    final User user = User.fromFirebaseUser(authResult.user);
-    _userSubject.add(user);
-    return user;
+    try {
+      final GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      final AuthResult authResult = await _firebaseAuth.signInWithCredential(credential);
+      logger.d('google user: $authResult'); // firebase, google.com, password
+      final User user = User.fromFirebaseUser(authResult.user);
+      _userSubject.add(user);
+      return user;
+    } on Exception catch (ex) {
+      logger.e(ex);
+      return null;
+    }
   }
 
   @override
   Future<User> signInWithFacebook() async {
-    final result = await _facebookLogin.logInWithReadPermissions(['email']);
+    final result = await _facebookLogin.logIn(['email']);
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
         final AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: result.accessToken.token);
@@ -143,5 +146,4 @@ class AuthRepositoryFirebaseImpl implements AuthRepository {
     logger.d('*** DISPOSE AuthRepository ***');
     _userSubject.close();
   }
-
 }

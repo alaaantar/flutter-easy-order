@@ -1,18 +1,21 @@
 // TODO orders counter / bloc unit tests : cart_bloc, storage_bloc
-// TODO FCM / cached_network_image / SafeArea / const / ??=
+// TODO flutter_bloc / FCM / cached_network_image / SafeArea / const / ??=
 // TODO stock / users info / pdf / image crop / image upload progress indicator
 // TODO transactions : limit 500 docs
 // TODO admob / firebase remote config (API key)
 // TODO responsive design / iOS
+// https://github.com/Codelessly/ResponsiveFramework
 // https://pub.dev/packages/flutter_platform_widgets
+// https://pub.dev/packages/flutter_bloc / https://pub.dev/packages/bloc_test
 // https://pub.dev/packages/states_rebuilder
 // https://pub.dev/packages/get_it
+// https://pub.dev/packages/flutter_hooks
+// https://pub.dev/packages/freezed
 // https://pub.dev/packages/auto_route
 // https://pub.dev/packages/hive
 // https://pub.dev/packages/moor
 // https://pub.dev/packages/infinite_view_pager
 // https://pub.dev/packages/mapbox_gl
-// https://pub.dev/packages/super_enum
 // https://pub.dev/packages/dartz (FP Either Task)
 // https://pub.dev/packages/authenticator
 // https://pub.dev/packages/autocomplete_textfield
@@ -31,11 +34,31 @@
 // UserAccountsDrawerHeader / AnimatedSwitcher / showGeneralDialog
 // https://medium.com/flutterpub/flutter-firebase-performance-and-crashlytics-14b650b9d042
 // Spent limit : https://console.cloud.google.com/appengine/quotadetails?project=simple-order-manager
+
+// flutter
+// dart
+// tabout
+// font family: Fira code (enable font ligature)
+
+// pubspec assist
+// awesome flutter snippets
+// bloc
+// bracket pair colorizer 2
+// todo tree
+// better comments
+// advanced new file
+// material theme darker
+// material icon theme
+// image preview
+// Color Hightlight
+// dart data class
+
 // Splash screen icons :
 // https://www.filledstacks.com/snippet/setting-up-your-splash-screen-in-flutter/
 // https://medium.com/@101/splash-screen-in-android-769d3b0bafd0
 // https://romannurik.github.io/AndroidAssetStudio/index.html
 // https://apetools.webprofusion.com/#/tools/imagegorilla
+
 // https://medium.com/@akashmahali/facebook-login-google-sign-in-not-working-on-android-app-in-production-5febd9537f92
 // echo 44:4E:48:99:19:50:5C:1F:63:A6:0F:F6:A1:C2:31:E5:01:38:55:6D | xxd -r -p | openssl base64
 

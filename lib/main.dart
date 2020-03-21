@@ -1,6 +1,6 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_order/bloc/auth_bloc.dart';
 import 'package:flutter_easy_order/bloc/category_bloc.dart';
@@ -28,8 +28,9 @@ import 'package:flutter_easy_order/shared/adaptive_theme.dart';
 import 'package:flutter_easy_order/widgets/helpers/logger.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+
 // import 'package:flutter/rendering.dart';
-import 'package:device_preview/device_preview.dart';
+// import 'package:device_preview/device_preview.dart';
 
 void main() {
   //   debugPaintSizeEnabled = true;
@@ -50,7 +51,7 @@ void main() {
   };
 
   // Log level
-  Logger.level = Level.nothing; // nothing / debug
+  Logger.level = Level.debug; // nothing / debug
 
   runApp(MyApp());
 //  runApp(
@@ -81,26 +82,25 @@ class MyApp extends StatelessWidget {
     logger.d('building main page');
 
     return MultiProvider(
-        providers: [
-          Provider<AuthRepository>(
-            builder: (BuildContext context) => AuthRepositoryFirebaseImpl(),
-            dispose: (BuildContext context, AuthRepository authRepository) => authRepository.dispose(),
-          ),
-          ProxyProvider<AuthRepository, AuthBloc>(
-            builder: (BuildContext context, AuthRepository authRepository, AuthBloc authBloc) =>
-                AuthBlocImpl(authRepository: authRepository),
-            dispose: (BuildContext context, AuthBloc authBloc) => authBloc.dispose(),
-          ),
-        ],
-        child: Consumer<AuthBloc>(
-          builder: (BuildContext context, AuthBloc authBloc, _) {
-            return StreamProvider<User>.value(
-              value: authBloc.user$, // Provider here
-              child: _buildAppStream(authBloc.user$),
-            );
-          },
+      providers: [
+        Provider<AuthRepository>(
+          builder: (BuildContext context) => AuthRepositoryFirebaseImpl(),
+          dispose: (BuildContext context, AuthRepository authRepository) => authRepository.dispose(),
         ),
-      );
+        ProxyProvider<AuthRepository, AuthBloc>(
+          builder: (BuildContext context, AuthRepository authRepository, AuthBloc authBloc) => AuthBlocImpl(authRepository: authRepository),
+          dispose: (BuildContext context, AuthBloc authBloc) => authBloc.dispose(),
+        ),
+      ],
+      child: Consumer<AuthBloc>(
+        builder: (BuildContext context, AuthBloc authBloc, _) {
+          return StreamProvider<User>.value(
+            value: authBloc.user$, // Provider here
+            child: _buildAppStream(authBloc.user$),
+          );
+        },
+      ),
+    );
   }
 
   Widget _buildAppStream(Stream<User> user$) {
@@ -122,6 +122,9 @@ class MyApp extends StatelessWidget {
             title: 'Simple Order Manager',
             // debugShowMaterialGrid: true,
             theme: getAdaptiveThemeData(context),
+            // TODO dark mode
+//            themeMode: ThemeMode.dark,
+//            darkTheme: ThemeData.dark(),
             // home: SplashScreen(),
             routes: routes,
             navigatorObservers: [
@@ -156,23 +159,19 @@ class MyApp extends StatelessWidget {
                 builder: (BuildContext context) => OrderRepositoryFirebaseImpl(),
               ),
               ProxyProvider<StorageRepository, StorageBloc>(
-                  builder: (BuildContext context, StorageRepository storageRepository, StorageBloc storageBloc) =>
-                      StorageBlocImpl(user: currentUser, storageRepository: storageRepository),
-                  dispose: (BuildContext context, StorageBloc storageBloc) => storageBloc.dispose(),
+                builder: (BuildContext context, StorageRepository storageRepository, StorageBloc storageBloc) =>
+                    StorageBlocImpl(user: currentUser, storageRepository: storageRepository),
+                dispose: (BuildContext context, StorageBloc storageBloc) => storageBloc.dispose(),
               ),
               ProxyProvider2<ProductRepository, StorageBloc, ProductBloc>(
-                  builder: (BuildContext context, ProductRepository productRepository, StorageBloc storageBloc,
-                          ProductBloc productBloc) =>
-                      ProductBlocImpl(
-                          user: currentUser, productRepository: productRepository, storageBloc: storageBloc),
-                  dispose: (BuildContext context, ProductBloc productBloc) => productBloc.dispose(),
+                builder: (BuildContext context, ProductRepository productRepository, StorageBloc storageBloc, ProductBloc productBloc) =>
+                    ProductBlocImpl(user: currentUser, productRepository: productRepository, storageBloc: storageBloc),
+                dispose: (BuildContext context, ProductBloc productBloc) => productBloc.dispose(),
               ),
               ProxyProvider2<CategoryRepository, StorageBloc, CategoryBloc>(
-                  builder: (BuildContext context, CategoryRepository categoryRepository, StorageBloc storageBloc,
-                          CategoryBloc categoryBloc) =>
-                      CategoryBlocImpl(
-                          user: currentUser, categoryRepository: categoryRepository, storageBloc: storageBloc),
-                  dispose: (BuildContext context, CategoryBloc categoryBloc) => categoryBloc.dispose(),
+                builder: (BuildContext context, CategoryRepository categoryRepository, StorageBloc storageBloc, CategoryBloc categoryBloc) =>
+                    CategoryBlocImpl(user: currentUser, categoryRepository: categoryRepository, storageBloc: storageBloc),
+                dispose: (BuildContext context, CategoryBloc categoryBloc) => categoryBloc.dispose(),
               ),
               ProxyProvider<OrderRepository, OrderBloc>(
                 builder: (BuildContext context, OrderRepository orderRepository, OrderBloc orderBloc) =>

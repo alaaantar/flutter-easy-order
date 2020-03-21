@@ -75,7 +75,7 @@ class CartBlocImpl implements CartBloc {
   // Combine all products with cart items
   @override
   Stream<List<CartItem>> findAllItems(Stream<Cart> cart$, Stream<List<Product>> products$) {
-    final Stream<List<CartItem>> allItems$ = Observable.combineLatest2(cart$, products$, _calculateProductsQuantity);
+    final Stream<List<CartItem>> allItems$ = Rx.combineLatest2(cart$, products$, _calculateProductsQuantity);
     return allItems$;
   }
 
